@@ -4,7 +4,6 @@ solver::solver(char grille[][4], int taille, bool tailleDico):m_tailleMot(taille
 {
     m_motActuel = new char[taille+1];
     m_motActuel[taille] = '\0';
-    //m_motActuel = {};
 
     for(int i = 0 ; i <= 3 ; i++)
     {
@@ -18,7 +17,7 @@ solver::solver(char grille[][4], int taille, bool tailleDico):m_tailleMot(taille
     /*
    fichier.open("dico0.txt", std::ios::in);  // on ouvre le fichier en lecture
 
-    if(!fichier)  // si l'ouverture a réussi
+    if(!fichier)  // si l'ouverture a rï¿½ussi
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
     else
         std::cout << "Fichier ouvert !";
@@ -56,13 +55,16 @@ void solver::resoudre()
             nomFichier.str("");
             nomFichier << taille << "Dicos/Dico_" << m_tailleMot << "/dico_" << m_grilleLettre[i][j] << ".txt";
             fichier.open(nomFichier.str().c_str(), std::ios::in);  // on ouvre le fichier en lecture
-            if(!fichier)  // si l'ouverture a réussi
+            if(!fichier){
                 std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
-
-            reinitGrille();
-            chercher(i,j,m_tailleMot);
-
-            fichier.close();
+            }
+            else
+            {
+                reinitGrille();
+                chercher(i,j,m_tailleMot);
+                fichier.close();
+            }
+           
            //std::cout<< i << "  " << j << std::endl;
         }
     }
@@ -140,7 +142,7 @@ bool solver::check(int checker)
     std::string motEnCours(m_motActuel);
     std::string motDuFichier;
     fichier.clear();
-    fichier.seekg(0, std::ios::beg); // Retour au début du fichier
+    fichier.seekg(0, std::ios::beg); // Retour au dï¿½but du fichier
     //std::cout<<"\nPASS " << fichier.tellg() <<"\n";
 
     if(checker != 0)
