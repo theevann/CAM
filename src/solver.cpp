@@ -55,6 +55,7 @@ void solver::resoudre()
             nomFichier.str("");
             nomFichier << taille << "Dicos/Dico_" << m_tailleMot << "/dico_" << m_grilleLettre[i][j] << ".txt";
             fichier.open(nomFichier.str().c_str(), std::ios::in);  // on ouvre le fichier en lecture
+
             if(!fichier){
                 std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
             }
@@ -64,7 +65,7 @@ void solver::resoudre()
                 chercher(i,j,m_tailleMot);
                 fichier.close();
             }
-           
+
            //std::cout<< i << "  " << j << std::endl;
         }
     }
